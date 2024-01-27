@@ -1,70 +1,41 @@
 <template>
-<div id="myDIV" class="header">
-  <h2>Inventory</h2>
-  <input type="text" id="myInput" placeholder="Ingredient...">
-  <span onclick="newElement()" class="addBtn">Add</span>
-</div>
+  <div id="myDIV" class="header">
+    <h2>Inventory</h2>
+    <input type="text" v-model="newItemText" id="myInput" placeholder="Ingredient...">
+    <span @click="addItem" class="addBtn">Add</span>
+  </div>
 
-<ul id="myUL">
-</ul>
+  <ul id="myUL">
+    <li v-for="(item, index) in items" :key="index" :class="{ checked: item.checked }">
+      {{ item.text }}
+      <span class="close" @click="removeItem(index)">&times;</span>
+    </li>
+  </ul>
 </template>
 
-<script setup>
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
+<script>
+export default {
+  data() {
+    return {
+      items: [],
+      newItemText: '',
+    };
+  },
+  methods: {
+    addItem() {
+      if (this.newItemText.trim() === '') {
+        alert('You must write something!');
+        return;
+      }
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
-
-// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
-
-// Create a new list item when clicking on the "Add" button
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
-
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-}
+      this.items.push({ text: this.newItemText, checked: false });
+      this.newItemText = '';
+    },
+    removeItem(index) {
+      this.items.splice(index, 1);
+    },
+  },
+};
 </script>
 
 <style scoped>
