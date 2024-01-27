@@ -14,7 +14,6 @@ defineProps<{
     </h3>
   </div>
 </template>
-
 <style scoped>
 h1 {
   font-weight: 500;
