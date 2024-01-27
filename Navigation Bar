@@ -11,7 +11,7 @@
     <a href="#Search">Search Recipes</a>
     <a href="#Saved">Saved Recipes</a>
     <a href="#Inventory">Inventory</a>
-    <a href="#Groceries">Groceries</a>
+    <a href="#Groceries">Groceries</a>, 
   </div>
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
