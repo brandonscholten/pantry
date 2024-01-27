@@ -30,7 +30,7 @@ export default {
         height: 100%;
         width: auto;
         padding: 10px;
-        margin-bottom: 15px;
+        margin: 15px;
     }
     .recipeName{
         font-size: 15pt;

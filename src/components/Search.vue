@@ -37,7 +37,7 @@ button{
     font-size: 24pt;
      background-color: #228b22;
      border: none;
-     width: 300px;
+     width: auto;
      height: 50px;
      margin: 10px;
      border-radius: 10%;
