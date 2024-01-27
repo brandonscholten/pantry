@@ -6,7 +6,7 @@
   </div>
 
   <ul id="myUL">
-    <li v-for="(item, index) in items" :key="index" :class="{ checked: item.checked }">
+    <li v-for="(item, index) in items" :key="index" :class="{ checked: item.checked }" @click="toggleItem(index)">
       {{ item.text }}
       <span class="close" @click="removeItem(index)">&times;</span>
     </li>
@@ -33,6 +33,9 @@ export default {
     },
     removeItem(index) {
       this.items.splice(index, 1);
+    },
+    toggleItem(index) {
+      this.items[index].checked = !this.items[index].checked;
     },
   },
 };
