@@ -58,7 +58,7 @@ ul li {
   cursor: pointer;
   position: relative;
   padding: 12px 8px 12px 40px;
-  background: #eee;
+  background: #90EE90;
   font-size: 18px;
   transition: 0.2s;
 
@@ -88,15 +88,15 @@ ul li:hover {
 }
 
 .close:hover {
-  background-color: #069c6c;
+  background-color: #90ee90;
   color: #3CB371;
 }
 
 /* Style the header */
 .header {
-  background-color: #069c6c;
+  background-image:linear-gradient(#90EE90, #006400);
   padding: 30px 40px;
-  color: white;
+  color: black;
   text-align: center;
 }
 
@@ -133,6 +133,6 @@ input {
 }
 
 .addBtn:hover {
-  background-color: #3CB371;
+  background-color: #663399;
 }
 </style>
