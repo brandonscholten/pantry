@@ -1,6 +1,6 @@
 <template>
     <div v-for="(ingredient, index) in ingredients" :key="index">
-        <ingredientInput :v-model="ingredients[index]"/>
+        <ingredientInput @input="setIngredient"/>
     </div>
     <div class="buttonContainer">
         <button @click="addIngredient">Add Ingredient</button>
@@ -20,6 +20,7 @@ export default {
     },
     data() {
         return {
+            resultInde: 0,
             showResults: false,
             resultInfo: [],
             ingredients: []
@@ -27,9 +28,13 @@ export default {
     },
     methods: {
         addIngredient() {
-            this.ingredients.push('');
+            this.ingredients.push('bread');
+        },
+        setIngredient(newVal) {
+            this.ingredients.push(newVal)
         },
         async searchRecipes() {
+            console.log(this.ingredients);
             //send request for search with ingredients (axios)
             const options = {
                 method: 'GET',

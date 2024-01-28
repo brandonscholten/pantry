@@ -1,6 +1,6 @@
 <template>
     <div class="recipeContainer" v-if="visible">
-        <input class="recipeInput" type="text" placeholder="ingredient">
+        <input class="recipeInput" type="text" v-model="ingredient" placeholder="ingredient">
         <button class="delete" @click="close">
             <i class="fa-solid fa-trash-can"></i>
         </button>
@@ -13,15 +13,13 @@ export default {
     data() {
         return {
             visible: true,
-            ingredient: this.value
+            ingredient: this.value || ''
         }
     },
     watch: {
         ingredient(newVal) {
+            console.log("emitted: ", newVal);
             this.$emit('input', newVal);
-        },
-        value(newVal) {
-            this.ingredient = newVal;
         }
     },
     methods: {

@@ -2,7 +2,7 @@
         <p style="padding: 10px">Results</p>
         <!-- TODO: pass props to result from each result -->
         <div v-for="(result, index) in results" :key="index">
-            <Result :title="result.title" :imageUrl="result.imageUrl" :usedIngredients="result.usedIngredients"/>
+            <Result :title="'Borscht'" :imageUrl="'https://natashaskitchen.com/wp-content/uploads/2018/10/Borscht-Recipe-2.jpg'" :usedIngredients="'-beats -chives -sour cream'"/>
         </div>
 </template>
 <script>
@@ -20,7 +20,8 @@
         },
         data() {
             return {
-                results: this.resultInfo,
+                //results: this.resultInfo,
+                results: 3,
             }
         },
         watch: {
