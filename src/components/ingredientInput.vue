@@ -9,9 +9,19 @@
 <script>
 
 export default {
+    props: ['value'], 
     data() {
         return {
             visible: true,
+            ingredient: this.value
+        }
+    },
+    watch: {
+        ingredient(newVal) {
+            this.$emit('input', newVal);
+        },
+        value(newVal) {
+            this.ingredient = newVal;
         }
     },
     methods: {

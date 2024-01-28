@@ -1,16 +1,17 @@
 <template>
-    <div v-for="index in count" :key="index">
-        <ingredientInput/>
+    <div v-for="(ingredient, index) in ingredients" :key="index">
+        <ingredientInput :v-model="ingredients[index]"/>
     </div>
     <div class="buttonContainer">
         <button @click="addIngredient">Add Ingredient</button>
         <button @click="searchRecipes">Search</button>
     </div>
-    <ResultsView v-if="showResults" />
+    <ResultsView :resultInfo="resultInfo" v-if="showResults" />  
 </template>
 <script>
 import ingredientInput from './ingredientInput.vue';    
 import ResultsView from '../views/ResultsView.vue';
+import axios from 'axios';
 
 export default {
     components: {
@@ -19,23 +20,37 @@ export default {
     },
     data() {
         return {
-            count: 1,
             showResults: false,
-            resultInfo: []
+            resultInfo: [],
+            ingredients: []
         };
     },
     methods: {
         addIngredient() {
-            this.count += 1;
+            this.ingredients.push('');
         },
-        searchRecipes() {
-            //send request for search with ingredients
-            const url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&number=5&ignorePantry=true&ranking=1';
+        async searchRecipes() {
+            //send request for search with ingredients (axios)
             const options = {
                 method: 'GET',
+                url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients',
+                params: {
+                    ingredients: this.ingredients.toString(),
+                    number: '5',
+                    ignorePantry: 'false',
+                    ranking: '1'
+                },
                 headers: {
-                    ''
+                    'X-RapidAPI-Key': '',//import.meta.env.SPOON_API_KEY,
+                    'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
                 }
+            };
+            try {
+                const response = await axios.request(options);
+                console.log("key: ",import.meta.env.SPOON_API_KEY)
+                console.log("data: ",response.data);
+            } catch (error) {
+                console.error(error);
             }
             //parse result and save relevant information in resultInfo
             //send data to results page and show it
