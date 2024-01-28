@@ -1,23 +1,41 @@
 <template>
         <p style="padding: 10px">Results</p>
         <!-- TODO: pass props to result from each result -->
-        <div v-for="index in results" :key="index">
-            <Result :title="'Mikhail Nesterenko'" :imageUrl="'https://www-s3-live.kent.edu/s3fs-root/s3fs-public/styles/profile_photo_internal/public/nesterenko.jpg?VersionId=JaMOR15uNw1nPtaxy.wUr0gDMS71AHxN&h=6b9bf2e9&itok=zmgeZvNa'" :usedIngredients="'Morphine, Walnuts'"/>
+        <div v-for="(result, index) in results" :key="index">
+            <Result :title="result.title" :imageUrl="result.imageUrl" :usedIngredients="result.usedIngredients"/>
         </div>
 </template>
 <script>
     import Result from "../components/Result.vue"
 
     export default {
+        props: {
+            resultInfo: {
+                type: Array,
+                default: () => [{ title: "test", imageUrl: "test", usedIngredients: ["one", "two"] },{ title: "test", imageUrl: "test", usedIngredients: ["two", "one"] }],
+            }
+        },
         components: {
             Result
         },
         data() {
             return {
-                results: 3, //TODO: get number of results from API
+                results: this.resultInfo,
             }
         },
+        watch: {
+            resultInfo(newResultInfo) {
+                console.log(newResultInfo)
+                this.results = newResultInfo;
+            },
+        },
+        computed: {
+        computedResults() {
+            return this.resultInfo.length > 0 ? this.resultInfo : [{ title: "test", imageUrl: "test", usedIngredients: ["one", "two"] },{ title: "test", imageUrl: "test", usedIngredients: ["two", "one"] }];
+        },
+    },
     }
+
 </script>
 <style>
     p{

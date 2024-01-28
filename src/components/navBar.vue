@@ -13,11 +13,10 @@
   </div>
   <!-- Navigation links (hidden by default) -->
   <div v-if="menuVisible">
-    <a href="#Enter">Enter Ingredients</a>
-    <a href="#Search">Search Recipes</a>
-    <a href="#Saved">Saved Recipes</a>
-    <a href="#Inventory">Inventory</a>
-    <a href="#Groceries">Groceries</a>, 
+    <router-link to="/" >Find Recipes</router-link>
+    <router-link to="/saved" >Saved Recipes</router-link>
+    <router-link to="/inventory" >Inventory</router-link>
+    <router-link to="/grocery" >Groceries</router-link> 
   </div>
 </div>
 </template>
