@@ -33,7 +33,7 @@
 
 .topnav {
   overflow: hidden;
-  background-color: #228B22;
+ background-image:linear-gradient(#90EE90, #006400);
   position: relative;
   padding-left: 10px;
   margin-bottom: 10px;
